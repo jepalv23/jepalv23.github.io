@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home Lab | Engineering & Infrastructure</title>
+
+    <meta
+        name="description"
+        content="A personal home lab focused on virtualization, infrastructure, networking, automation, and software engineering."
+    >
+
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #e6edf3;
+            --muted: #8b949e;
+            --accent: #58a6ff;
+            --code: #79c0ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(100% - 40px, 1000px);
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 80px 0 50px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: -1px;
+        }
+
+        header p {
+            margin: 0;
+            max-width: 700px;
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        nav {
+            margin-top: 25px;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        section {
+            padding: 55px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.7rem;
+        }
+
+        h3 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 22px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .spec {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .spec:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: var(--muted);
+        }
+
+        .spec-value {
+            text-align: right;
+            font-family: monospace;
+            color: var(--code);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 9px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        footer {
+            padding: 35px 0 60px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+            color: var(--code);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding-top: 50px;
+            }
+
+            .spec {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .spec-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+
+        <h1>Home Lab</h1>
+
+        <p>
+            A personal infrastructure and software engineering lab for
+            virtualization, networking, automation, distributed systems,
+            and experimenting with technologies outside of day-to-day
+            development work.
+        </p>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#specs">Specs</a>
+            <a href="#goals">Goals</a>
+            <a href="#projects">Projects</a>
+            <a href="#stack">Stack</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+        <div class="container">
+
+            <h2>About the Lab</h2>
+
+            <p>
+                I've been working in software engineering for more than
+                10 years, primarily building software, services, APIs,
+                automation, and infrastructure that support production
+                systems.
+            </p>
+
+            <p>
+                This home lab is a place to work closer to the infrastructure
+                layer: building virtualized environments, experimenting with
+                networking, deploying services, automating infrastructure,
+                and learning how systems behave outside of a typical
+                development environment.
+            </p>
+
+            <p>
+                The goal isn't to recreate a production data center at home.
+                It's to have a flexible environment where I can break things,
+                rebuild them, automate them, and understand them.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- SPECS -->
+
+    <section id="specs">
+        <div class="container">
+
+            <h2>Hardware & Infrastructure</h2>
+
+            <p class="subtitle">
+                Current lab configuration.
+            </p>
+
+            <div class="card">
+
+                <div class="spec">
+                    <span class="spec-label">CPU</span>
+                    <span class="spec-value">
+                        AMD Ryzen 9 7900 — 12C / 24T
+                    </span>
+                </div>
+
+                <div class="spec">
+                    <span class="spec-label">Memory</span>
+                    <span class="spec-value">
+                        128 GB DDR5 ECC
+                    </span>
+                </div>
+
+                <div class="spec">
+                    <span class="spec-label">Storage</span>
+                    <span class="spec-value">
+                        1 TB + 2 × 2 TB NVMe SSD
+                    </span>
+                </div>
+
+                <div class="spec">
+                    <span class="spec-label">Networking</span>
+                    <span class="spec-value">
+                        10 GbE
+                    </span>
+                </div>
+
+                <div class="spec">
+                    <span class="spec-label">Internet</span>
+                    <span class="spec-value">
+                        Dedicated IP
+                    </span>
+                </div>
+
+                <div class="spec">
+                    <span class="spec-label">Hypervisor</span>
+                    <span class="spec-value">
+                        Proxmox VE
+                    </span>
+                </div>
+
+                <div class="spec">
+                    <span class="spec-label">Virtualization</span>
+                    <span class="spec-value">
+                        KVM / LXC
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- GOALS -->
+
+    <section id="goals">
+        <div class="container">
+
+            <h2>Goals</h2>
+
+            <div class="grid">
+
+                <div class="card">
+                    <h3>Infrastructure</h3>
+                    <p>
+                        Build and maintain a small, reliable virtualization
+                        environment for running services, development
+                        environments, and experiments.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Automation</h3>
+                    <p>
+                        Reduce manual configuration through infrastructure
+                        as code, configuration management, CI/CD, and
+                        repeatable deployments.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Networking</h3>
+                    <p>
+                        Learn more about VLANs, routing, DNS, firewalls,
+                        reverse proxies, segmentation, and operating
+                        services across multiple networks.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Observability</h3>
+                    <p>
+                        Build practical monitoring and logging around the
+                        services running in the lab and understand how
+                        systems behave over time.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Distributed Systems</h3>
+                    <p>
+                        Experiment with databases, message queues, service
+                        discovery, caching, clustering, and other distributed
+                        system patterns.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Learning by Building</h3>
+                    <p>
+                        Use the lab to explore technologies that are difficult
+                        to understand completely without actually operating
+                        them.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+        <div class="container">
+
+            <h2>Upcoming Projects</h2>
+
+            <p class="subtitle">
+                Initial projects and experiments planned for the lab.
+            </p>
+
+            <div class="grid">
+
+                <div class="card">
+                    <span class="status">Planned</span>
+                    <h3>Proxmox Infrastructure</h3>
+                    <p>
+                        Establish the base Proxmox environment, storage
+                        layout, VM templates, LXC containers, backups,
+                        and basic resource management.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="status">Planned</span>
+                    <h3>Infrastructure as Code</h3>
+                    <p>
+                        Manage infrastructure using Git, Terraform/OpenTofu,
+                        Ansible, and reusable configuration.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="status">Planned</span>
+                    <h3>Home Network Segmentation</h3>
+                    <p>
+                        Introduce VLANs and network segmentation for
+                        infrastructure, trusted devices, services, and
+                        experimental workloads.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="status">Planned</span>
+                    <h3>Observability Stack</h3>
+                    <p>
+                        Deploy metrics, logs, dashboards, and alerting to
+                        monitor the health of the lab and its workloads.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="status">Planned</span>
+                    <h3>Private Development Platform</h3>
+                    <p>
+                        Build a self-hosted environment for Git repositories,
+                        CI/CD pipelines, container builds, internal services,
+                        and development tooling.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="status">Planned</span>
+                    <h3>Container Platform</h3>
+                    <p>
+                        Experiment with Docker, container orchestration,
+                        service discovery, networking, persistent storage,
+                        and deployment patterns.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- TECHNOLOGY STACK -->
+
+    <section id="stack">
+        <div class="container">
+
+            <h2>Technology Stack</h2>
+
+            <p>
+                The lab will evolve over time, but the initial software stack
+                will focus on technologies that are useful for infrastructure,
+                backend engineering, automation, and systems development.
+            </p>
+
+            <div class="grid">
+
+                <div class="card">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>Go</li>
+                        <li>JavaScript / TypeScript</li>
+                        <li>Bash</li>
+                        <li>SQL</li>
+                        <li>Java</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li>Proxmox VE</li>
+                        <li>Linux</li>
+                        <li>Docker</li>
+                        <li>Terraform / OpenTofu</li>
+                        <li>Ansible</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Networking</h3>
+                    <ul>
+                        <li>TCP/IP</li>
+                        <li>DNS</li>
+                        <li>DHCP</li>
+                        <li>VLANs</li>
+                        <li>Routing</li>
+                        <li>Reverse proxies</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Services</h3>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>Redis</li>
+                        <li>Message queues</li>
+                        <li>REST APIs</li>
+                        <li>CI/CD</li>
+                        <li>Monitoring & logging</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PHILOSOPHY -->
+
+    <section>
+        <div class="container">
+
+            <h2>Lab Philosophy</h2>
+
+            <p>
+                Everything in the lab should be reproducible where practical.
+                Configuration belongs in source control, infrastructure
+                should be automated, and services should be treated as
+                disposable rather than permanent snowflakes.
+            </p>
+
+            <p>
+                The lab is intentionally experimental. Some projects will
+                succeed, some will be rebuilt from scratch, and some will
+                probably be removed entirely. That's part of the point.
+            </p>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer>
+    <div class="container">
+        Home Lab · Built for experimentation, automation, and learning.
+    </div>
+</footer>
+
+</body>
+</html>
